@@ -1,5 +1,5 @@
 """
-NCR Retail Rice Price Forecasting & Explainability — Streamlit replica.
+Time-Series Analysis & Knowledge Attribution for Local Rice (TAKAL) — Streamlit replica.
 
 Faithful port of the Next.js mock-up (components/forecasting-dashboard.tsx).
 All data here is MOCK / placeholder, matching the React version, because the
@@ -116,7 +116,7 @@ def local_shap(model: str, week_idx: int):
 # Page config + CSS (approximates the shadcn/ui card styling)
 # --------------------------------------------------------------------------- #
 st.set_page_config(
-    page_title="NCR Rice Price Forecasting & Explainability",
+    page_title="TAKAL — Time-Series Analysis & Knowledge Attribution for Local Rice",
     page_icon="🍚",
     layout="wide",
 )
@@ -177,7 +177,7 @@ def stat_card(label, value, sub="", accent=None):
 head_left, head_right = st.columns([3, 2])
 with head_left:
     st.markdown(
-        '<p class="app-title">NCR Retail Rice Price Forecasting &amp; Explainability</p>',
+        '<p class="app-title">Time-Series Analysis &amp; Knowledge Attribution for Local Rice (TAKAL)</p>',
         unsafe_allow_html=True,
     )
 with head_right:

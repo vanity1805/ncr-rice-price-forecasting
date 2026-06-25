@@ -1,4 +1,4 @@
-# NCR Retail Rice Price Forecasting & Explainability
+# Time-Series Analysis & Knowledge Attribution for Local Rice (TAKAL)
 
 An interactive **Streamlit** dashboard that visualizes the outputs of two Stacked
 LSTM models (multivariate vs. univariate) for forecasting weekly Regular-Milled
