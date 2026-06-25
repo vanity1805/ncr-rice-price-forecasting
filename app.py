@@ -1,11 +1,10 @@
 """
-Time-Series Analysis & Knowledge Attribution for Local Rice (TAKAL) — Streamlit replica.
+Time-Series Analysis & Knowledge Attribution for Local Rice (TAKAL) — Streamlit dashboard.
 
-Faithful port of the Next.js mock-up (components/forecasting-dashboard.tsx).
-All data here is MOCK / placeholder, matching the React version, because the
-Stacked LSTM models have not been trained yet. Once trained, replace the mock
-dictionaries below with the model's exported predictions, metrics, and SHAP
-values (or call the model + the `shap` library directly).
+All data here is MOCK / placeholder because the Stacked LSTM models have not been
+trained yet. Once trained, replace the mock dictionaries below with the model's
+exported predictions, metrics, and SHAP values (or call the model + the `shap`
+library directly).
 """
 
 import numpy as np
@@ -13,7 +12,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 # --------------------------------------------------------------------------- #
-# Mock data (identical to the React mock-up)
+# Mock data
 # --------------------------------------------------------------------------- #
 WEEKS = [f"Week {i + 1}" for i in range(12)]
 
@@ -113,7 +112,7 @@ def local_shap(model: str, week_idx: int):
 
 
 # --------------------------------------------------------------------------- #
-# Page config + CSS (approximates the shadcn/ui card styling)
+# Page config + CSS (card styling)
 # --------------------------------------------------------------------------- #
 st.set_page_config(
     page_title="TAKAL — Time-Series Analysis & Knowledge Attribution for Local Rice",
@@ -153,6 +152,13 @@ st.markdown(
       .verdict {
         background: #f0fdf4; border-radius: 10px; padding: 1rem; text-align: center;
       }
+      /* Make the Active Model dropdown non-typeable (read-only look) while
+         keeping it clickable: block the search input but allow the menu to open. */
+      .st-key-active_model div[data-baseweb="select"] input {
+        caret-color: transparent;
+        pointer-events: none;
+        user-select: none;
+      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -184,6 +190,7 @@ with head_right:
     model_label = st.selectbox(
         "Active Model",
         ["Multivariate Model (Economic Indicators)", "Univariate Model (Baseline)"],
+        key="active_model",
     )
 active = "multivariate" if model_label.startswith("Multivariate") else "univariate"
 active_name = "Multivariate" if active == "multivariate" else "Univariate"
